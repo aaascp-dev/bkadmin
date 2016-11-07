@@ -5,6 +5,6 @@ class CreateRestrictions < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :restrictions, [:beer_restriction_id, : :beer_restriction_type]
+    add_index :restrictions, [:beer_restriction_id, :beer_restriction_type]
   end
 end
