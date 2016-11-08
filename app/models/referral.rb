@@ -7,4 +7,5 @@ class Referral < ApplicationRecord
     validates :inviter, presence: true, message: "Convidador deve ser informado."
     validates :guest, presence: true, message: "Convidado deve ser informado."
     validates :date, presence: true, message: "Data deve ser informada."
+    validates :inviter_id, uniqueness: {scope: :guest_id}, message: "Indicação informada já existe."
 end

@@ -7,4 +7,5 @@ class ClubProduct < ApplicationRecord
     validates_associated :product, message: "Produto informado é inválido."
     validates :quantity, presence: true, message: "Deve informar a quantidade."
     validates :quantity, numericality: { only_integer: true }
+    validates :product_id, uniqueness: {scope: :club_id}, message: "Produto informado já existe."
 end

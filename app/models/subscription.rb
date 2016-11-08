@@ -8,5 +8,6 @@ class Subscription < ApplicationRecord
     validates :client, presence: true, message: "Cliente deve ser informado."
     validates :plan,  presence: true, message: "Plano deve ser informado."
     validates :start_date, presence: true, message: "Data de início deve ser informada."
-
+    validates :client_id, uniqueness: {scope: [:plan_id, :start_date]},
+              message: "Assinatura informada já existe."
 end

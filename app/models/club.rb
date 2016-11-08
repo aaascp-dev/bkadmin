@@ -6,4 +6,5 @@ class Club < ApplicationRecord
     validates :plan, presence: true, message: "Deve informar o plano."
     validades_associated :plan, message: "Plano informado é inválido."
     validates :date, presence: true, message: "Deve informar a data."
+    validates :plan_id, uniqueness: {scope: :date}, message: "Clube informado já existe."
 end
