@@ -8,5 +8,6 @@ class CreateReferrals < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :referrals, [:inviter_id, :guest_id], unique: true, name: "index_referrals"
   end
 end

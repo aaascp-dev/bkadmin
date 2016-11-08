@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.integer "beer_id",                 null: false
     t.integer "beer_characteristics_id", null: false
     t.index ["beer_characteristics_id"], name: "index_beers_beer_characteristics_on_beer_characteristics_id"
+    t.index ["beer_id", "beer_characteristics_id"], name: "index_beers_beer_characteristics", unique: true
     t.index ["beer_id"], name: "index_beers_beer_characteristics_on_beer_id"
   end
 
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
   create_table "clients_restrictions", id: false, force: :cascade do |t|
     t.integer "client_id",      null: false
     t.integer "restriction_id", null: false
+    t.index ["client_id", "restriction_id"], name: "index_clients_restrictions", unique: true
     t.index ["client_id"], name: "index_clients_restrictions_on_client_id"
     t.index ["restriction_id"], name: "index_clients_restrictions_on_restriction_id"
   end
@@ -88,8 +90,8 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_club_extras_on_client_id"
+    t.index ["club_id", "extra_id", "extra_type", "client_id"], name: "index_club_extra", unique: true
     t.index ["club_id"], name: "index_club_extras_on_club_id"
-    t.index ["extra_id", "extra_type"], name: "index_club_extra"
     t.index ["extra_type", "extra_id"], name: "index_club_extras_on_extra_type_and_extra_id"
   end
 
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_clubs_on_plan_id"
+    t.index [nil, "date"], name: "index_clubs_on_plan_and_date", unique: true
   end
 
   create_table "clubs_products", force: :cascade do |t|
@@ -107,6 +110,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.integer  "quantity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["club_id", "product_id"], name: "index_clubs_products_on_club_id_and_product_id", unique: true
     t.index ["club_id"], name: "index_clubs_products_on_club_id"
     t.index ["product_id"], name: "index_clubs_products_on_product_id"
   end
@@ -141,6 +145,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.integer  "quantity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id", "product_id"], name: "index_orders_products_on_order_id_and_product_id", unique: true
     t.index ["order_id"], name: "index_orders_products_on_order_id"
     t.index ["product_id"], name: "index_orders_products_on_product_id"
   end
@@ -170,6 +175,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["guest_id"], name: "index_referrals_on_guest_id"
+    t.index ["inviter_id", "guest_id"], name: "index_referrals", unique: true
     t.index ["inviter_id"], name: "index_referrals_on_inviter_id"
   end
 
@@ -190,6 +196,7 @@ ActiveRecord::Schema.define(version: 20161106163340) do
     t.text     "cancellation_reason"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["client_id", "plan_id", "start_date"], name: "index_subscription", unique: true
     t.index ["client_id"], name: "index_subscriptions_on_client_id"
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
     t.index ["referral_id_id"], name: "index_subscriptions_on_referral_id_id"

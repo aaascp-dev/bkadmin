@@ -6,5 +6,6 @@ class CreateClubs < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :clubs, [:plan, :date], unique: true
   end
 end

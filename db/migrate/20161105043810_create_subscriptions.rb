@@ -10,5 +10,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :subscriptions, [:client_id, :plan_id, :start_date], unique: true,
+              name: "index_subscription"
   end
 end
