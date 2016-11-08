@@ -5,10 +5,11 @@ class GlassTypesController < ApplicationController
   end
 
   def create
-    glass_type = GlassType.new(glass_type_params)
-    if glass_type.save
+    @glass_type = GlassType.new(glass_type_params)
+    if @glass_type.save
       redirect_to :action => "new"
     else
+      @types = GlassType.all
       render "new"
     end
   end
