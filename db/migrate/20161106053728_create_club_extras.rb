@@ -9,6 +9,6 @@ class CreateClubExtras < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :club_extras, [:extra_id, :extra_type]
+    add_index :club_extras, [:extra_id, :extra_type], name: "index_club_extra"
   end
 end

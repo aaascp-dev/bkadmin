@@ -1,4 +1,4 @@
-class CreateClubwProducts < ActiveRecord::Migration[5.0]
+class CreateClubsProducts < ActiveRecord::Migration[5.0]
   def change
     create_table :clubs_products do |t|
       t.belongs_to :club, index: true, null: false
