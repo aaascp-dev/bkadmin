@@ -3,6 +3,6 @@ class Order < ApplicationRecord
     has_many :club_extras, as: :extra
     has_many :products, through: :order_products
     validates_associated :client, message: "Cliente informado não é válido."
-    validades :client, presence: true, message: "Cliente deve ser informado."
-    validates :date, presence: true, message: "Data deve ser informada."
+    validades :client, presence: { message: "Cliente deve ser informado." }
+    validates :date, presence: { message: "Data deve ser informada." }
 end
