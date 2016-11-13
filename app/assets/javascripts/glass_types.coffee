@@ -8,9 +8,14 @@ $ ->
 
   $('.chips-initial').material_chip({data});
 
-  $('.chips').on "chip.delete", (e, chip) ->
+  $('.chips .close').on "click", (event) ->
+    event.preventDefault()
+
+  $('.chips').on "chip.delete", (event, chip) ->
+    event.preventDefault()
     $('#delete_chip_confirmation_glass_type').val(chip.id)
     $('#delete_chip_confirmation_glass_type').text(chip.tag)
+    $('#destroy_glass_type_button').attr("href", "/glass_types/" + chip.id)
     $('#delete_chip_confirmation').modal('open')
 
   $('.chips').on "chip.add", (e, chip) ->

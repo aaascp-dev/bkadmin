@@ -14,14 +14,10 @@
   <% end %>
 <% end %>
 
-<div class="chips chips-initial"></div>
+<div class="chips chips-initial disabled"></div>
 
 <%= form_for @glass_type, remote: true  do |f| %>
   <%= f.hidden_field :name %>
-<% end %>
-
-<%= form_for @gt = GlassType.new, url: glass_type_path(@gs) method: :delete, html: {id: :destroy_glass_type}  do |f| %>
-  <%= f.hidden_field :id %>
 <% end %>
 
 <!-- Modal Structure -->
@@ -35,11 +31,7 @@
   <div class="modal-footer">
     <a class=" modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
 
-    <%= link_to "Remover", "",
-      onClick: "
-        var v = $('#delete_chip_confirmation_glass_type').val();
-        $('#glass_type_id').val(v);
-        $('form#destroy_glass_type').submit()",
-        class: "modal-action modal-close waves-effect waves-green btn-flat" %>
+    <%= link_to "Remover", "", id: :destroy_glass_type_button, method: :delete,
+      class: "modal-action modal-close waves-effect waves-green btn-flat" %>
   </div>
 </div>
