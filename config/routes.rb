@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'glass_types#new'
 
-  resources :glass_types, :only => [:new, :create]
+  resources :glass_types, :only => [:new, :create, :destroy]
 end

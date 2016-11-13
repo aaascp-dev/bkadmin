@@ -1,28 +1,45 @@
 <h3>Tipos de copos</h3>
 
-<h5>Adicionar</h5>
+<!-- Chips initialization -->
+<%= javascript_tag do %>
+  var data = [];
 
-<div class="row">
-  <%= form_for(@glass_type, :html => {:class => ["col", "s12"]}) do |f| %>
-    <div class="row">
-      <div class="input-field col s6">
-        <%= f.text_field :name, class:"validate" %>
-        <%= f.label :name, "Nome" %>
-      </div>
-      <div class="input-field col s6">
-        <button class="btn waves-effect waves-light" type="submit" name="action">
-          Adicionar<i class="material-icons right">send</i>
-        </button>
-      </div>
-    </div>
+  <% @types.each do |type| %>
+    var tag = {
+      tag: "<%= j type.name %>",
+      id: <%= j type.id.to_s %>
+    };
+
+    data.push(tag);
   <% end %>
-</div>
-
-<h5>Existentes</h5>
-
-<% @types.each do |type| %>
-<div class="chip">
-  <%= type.name %>
-  <i class="close material-icons">close</i>
-</div>
 <% end %>
+
+<div class="chips chips-initial"></div>
+
+<%= form_for @glass_type, remote: true  do |f| %>
+  <%= f.hidden_field :name %>
+<% end %>
+
+<%= form_for @gt = GlassType.new, url: glass_type_path(@gs) method: :delete, html: {id: :destroy_glass_type}  do |f| %>
+  <%= f.hidden_field :id %>
+<% end %>
+
+<!-- Modal Structure -->
+<div id="delete_chip_confirmation" class="modal">
+  <div class="modal-content">
+    <h4>Remover tipo de copo</h4>
+    <p>Tem certeza que deseja excluir permanentemente o tipo de copo:
+      <strong><span id="delete_chip_confirmation_glass_type"></span></strong>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a class=" modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+
+    <%= link_to "Remover", "",
+      onClick: "
+        var v = $('#delete_chip_confirmation_glass_type').val();
+        $('#glass_type_id').val(v);
+        $('form#destroy_glass_type').submit()",
+        class: "modal-action modal-close waves-effect waves-green btn-flat" %>
+  </div>
+</div>
