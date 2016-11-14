@@ -1,7 +1,7 @@
 class GlassTypesController < ApplicationController
   def index
     @glass_type = GlassType.new
-    @types = GlassType.all
+    @types = GlassType.order("LOWER(name)").all
   end
 
   def create
@@ -9,17 +9,14 @@ class GlassTypesController < ApplicationController
     if @glass_type_to_save.save
       @glass_type = GlassType.new
       @types = GlassType.all
-      render :index
     else
       @glass_type = GlassType.new
       @types = GlassType.all
-      render :index
     end
   end
 
   def destroy
     GlassType.find(params[:id]).destroy
-    #redirect_to :new
   end
 
   private
