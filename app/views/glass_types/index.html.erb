@@ -14,11 +14,25 @@
   <% end %>
 <% end %>
 
-<div class="chips chips-initial disabled"></div>
+<h5>Adicionar</h5>
 
-<%= form_for @glass_type, remote: true  do |f| %>
-  <%= f.hidden_field :name %>
+<%= form_for @glass_type, class: "col s12" do |f| %>
+  <div class="row">
+    <div class="input-field col s6">
+      <%= f.text_field :name, class:"validate" %>
+      <%= f.label :name, "Nome" %>
+    </div>
+
+    <div class="input-field col s6">
+      <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
+        <i class="material-icons">add</i>
+       </button>
+    </div>
+  </div>
 <% end %>
+
+<h5>Existentes</h5><br/>
+<div class="chips-initial"></div>
 
 <!-- Modal Structure -->
 <div id="delete_chip_confirmation" class="modal">
@@ -29,7 +43,8 @@
     </p>
   </div>
   <div class="modal-footer">
-    <a class=" modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+    <%= link_to "Cancelar", glass_types_path,
+      class: "modal-action modal-close waves-effect waves-red btn-flat" %>
 
     <%= link_to "Remover", "", id: :destroy_glass_type_button, method: :delete,
       class: "modal-action modal-close waves-effect waves-green btn-flat" %>
