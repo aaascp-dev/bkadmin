@@ -8,17 +8,19 @@ $ ->
 
   $( 'div.chips > input.input').remove()
 
-  $('.chip').on "click", (event) ->
+  $('.chip').on "dblclick", (event) ->
     chipIndex =  $(event.target).index()
     chip = $('.chips-initial').find('.chip').eq(chipIndex)
     if (chip)
       $('.chips-initial').trigger('chip.select', $('.chips-initial').data('chips')[chipIndex])
 
-  $('.chips-initial').on "chip.select", (event, chip) -> alert chip.tag
+  $('.chips-initial').on "chip.select", (event, chip) ->
+    $('#glass_type_id').val(chip.id)
+    $('#glass_type_name_edit').val(chip.tag)
+    $('#edit_chip').modal('open')
 
 
   $('.chips-initial').on "chip.delete", (event, chip) ->
-    alert chip
     $('#delete_chip_confirmation_glass_type').val(chip.id)
     $('#delete_chip_confirmation_glass_type').text(chip.tag)
     $('#destroy_glass_type_button').attr("href", "/glass_types/" + chip.id)

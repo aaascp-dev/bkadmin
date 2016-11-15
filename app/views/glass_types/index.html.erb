@@ -34,7 +34,7 @@
 <h5>Existentes</h5><br/>
 <div class="chips-initial" style="border-bottom: 0px;"></div>
 
-<!-- Modal Structure -->
+<!-- Modal Structure Confirm-->
 <div id="delete_chip_confirmation" class="modal">
   <div class="modal-content">
     <h4>Remover tipo de copo</h4>
@@ -43,10 +43,34 @@
     </p>
   </div>
   <div class="modal-footer">
-    <%= link_to "Cancelar", glass_types_path,
+    <%= link_to "Cancelar", glass_types_url, method: :get,
       class: "modal-action modal-close waves-effect waves-red btn-flat" %>
 
     <%= link_to "Remover", "", id: :destroy_glass_type_button, method: :delete,
       class: "modal-action modal-close waves-effect waves-green btn-flat" %>
+  </div>
+</div>
+
+<!-- Modal Structure Edit -->
+<div id="edit_chip" class="modal">
+  <div class="modal-content">
+    <h4>Editar tipo de copo</h4><br/>
+    <div class="container">
+      <%= form_for @glass_type do |f| %>
+        <div class="row">
+          <div class="input-field">
+            <%= f.hidden_field :id %>
+            <%= f.text_field :name, id: "glass_type_name_edit"%>
+            <%= f.label :name, "Nome", class: "active" %>
+          </div>
+          <div class="modal-footer">
+            <%= link_to "Cancelar", "", method: :get,
+              class: "modal-action modal-close waves-effect waves-red btn-flat" %>
+
+            <%= f.submit "Editar", class: "modal-action modal-close waves-effect waves-green btn-flat" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
