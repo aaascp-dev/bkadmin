@@ -48,3 +48,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'materialize-sass'
+gem "omniauth-google-oauth2", "~> 0.2.1"

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login | Beeking</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+    <nav style="padding-left:0px">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Beer King</a>
+      </div>
+    </nav>
+
+    <main style="padding-left:0px">
+      <div class="container">
+          <%= yield %>
+      </div>
+    </main>
+  </body>
+</html>
