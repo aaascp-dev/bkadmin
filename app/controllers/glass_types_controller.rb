@@ -1,4 +1,4 @@
-class GlassTypesController < ApplicationController
+class GlassTypesController < AdminController
   def index
     @glass_type = GlassType.new
     @types = GlassType.order("LOWER(name)").all
