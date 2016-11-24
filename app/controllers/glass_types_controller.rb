@@ -5,8 +5,24 @@ class GlassTypesController < AdminController
   end
 
   def create
-    @glass_type_to_save = GlassType.new(glass_type_params)
-    if @glass_type_to_save.save
+    glass_type_to_save = GlassType.new(glass_type_params)
+    if glass_type_to_save.save
+      redirect_to glass_types_path
+    else
+      redirect_to glass_types_path
+    end
+  end
+
+  def edit
+    @glass_type = GlassType.find(params[:id])
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
+
+  def update
+    glass_type = GlassType.find(params[:id])
+    if glass_type.update_attributes(glass_type_params)
       redirect_to glass_types_path
     else
       redirect_to glass_types_path
@@ -16,15 +32,6 @@ class GlassTypesController < AdminController
   def destroy
     GlassType.find(params[:id]).destroy
     redirect_to glass_types_path
-  end
-
-  def update
-    @glass_type = GlassType.find(params[:id])
-    if @glass_type.update_attributes(glass_type_params)
-      redirect_to glass_types_path
-    else
-      redirect_to glass_types_path
-    end
   end
 
   private

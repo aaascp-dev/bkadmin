@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :glass_types, only: [:index, :create, :destroy]
+  resources :glass_types, only: [:index, :create, :destroy, :update, :edit]
   resources :sessions, only: [:create, :destroy]
   resources :login, only: [:index]
 

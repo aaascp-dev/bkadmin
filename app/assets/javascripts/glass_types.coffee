@@ -15,9 +15,14 @@ $ ->
       $('.chips-initial').trigger('chip.select', $('.chips-initial').data('chips')[chipIndex])
 
   $('.chips-initial').on "chip.select", (event, chip) ->
-    $('#glass_type_id').val(chip.id)
-    $('#glass_type_name_edit').val(chip.tag)
-    $('#edit_chip').modal('open')
+    url = '/glass_types/' + chip.id + '/edit'
+    $.ajax url,
+        type: 'GET'
+        dataType: 'html'
+        success: (data, textStatus, jqXHR) ->
+          $('#edit_chip').append data
+          $('#edit_chip').modal('open')
+
 
 
   $('.chips-initial').on "chip.delete", (event, chip) ->
