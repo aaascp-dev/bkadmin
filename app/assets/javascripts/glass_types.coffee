@@ -20,13 +20,16 @@ $ ->
         type: 'GET'
         dataType: 'html'
         success: (data, textStatus, jqXHR) ->
+          $('#edit_chip').empty()
           $('#edit_chip').append data
           $('#edit_chip').modal('open')
-
-
 
   $('.chips-initial').on "chip.delete", (event, chip) ->
     $('#delete_chip_confirmation_glass_type').val(chip.id)
     $('#delete_chip_confirmation_glass_type').text(chip.tag)
     $('#destroy_glass_type_button').attr("href", "/glass_types/" + chip.id)
     $('#delete_chip_confirmation').modal('open')
+
+  $('.field_with_errors > .validate').removeClass('valid').addClass('invalid')
+
+  $('.field_with_errors > label').addClass('active')

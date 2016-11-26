@@ -5,11 +5,13 @@ class GlassTypesController < AdminController
   end
 
   def create
-    glass_type_to_save = GlassType.new(glass_type_params)
-    if glass_type_to_save.save
+    @glass_type = GlassType.new(glass_type_params)
+    if @glass_type.save
+      flash[:success] = "Salvo com sucesso"
       redirect_to glass_types_path
     else
-      redirect_to glass_types_path
+      @types = GlassType.order("LOWER(name)").all
+      render :index
     end
   end
 
@@ -21,11 +23,13 @@ class GlassTypesController < AdminController
   end
 
   def update
-    glass_type = GlassType.find(params[:id])
-    if glass_type.update_attributes(glass_type_params)
+    @glass_type = GlassType.find(params[:id])
+    if @glass_type.update_attributes(glass_type_params)
+      flash[:success] = "Atualizado com sucesso"
       redirect_to glass_types_path
     else
-      redirect_to glass_types_path
+      @types = GlassType.order("LOWER(name)").all
+      render :index
     end
   end
 
