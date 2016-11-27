@@ -49,21 +49,7 @@
 <div class="chips-initial" style="border-bottom: 0px;"></div>
 
 <!-- Modal Structure Confirm-->
-<div id="delete_chip_modal" class="modal">
-  <div class="modal-content">
-    <h4>Remover característica</h4>
-    <p>Tem certeza que deseja excluir permanentemente a característica:
-      <strong><span id="delete_chip_confirmation"></span></strong>
-    </p>
-  </div>
-  <div class="modal-footer">
-    <%= link_to "Cancelar", beer_characteristics_url, method: :get,
-      class: "modal-action modal-close waves-effect waves-red btn-flat" %>
-
-    <%= link_to "Remover", "", id: :destroy_button, method: :delete,
-      class: "modal-action modal-close waves-effect waves-green btn-flat" %>
-  </div>
-</div>
+<%= render partial:"shared/delete_modal", locals: { title: "característica" } %>
 
 <!-- Modal Structure Container -->
 <div id="edit_chip_modal" class="modal"></div>
