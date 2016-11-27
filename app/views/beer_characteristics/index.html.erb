@@ -1,55 +1,9 @@
-<h3>Tipos de cervejas</h3>
+<h3>Características</h3>
 
-<!-- Chips initialization -->
-<%= javascript_tag do %>
-  var data = [];
-
-  <% @types.each do |type| %>
-    var tag = {
-      tag: "<%= j type.name %>",
-      id: <%= j type.id.to_s %>,
-      controller: "beer_characteristics"
-    };
-
-    data.push(tag);
-  <% end %>
-<% end %>
-
-<h5>Adicionar</h5>
-
-
-<% flash.each do |key, value| %>
-  <%= content_tag :li, value, class: "#{key}" %>
-<% end %>
-
-<%= form_for @beer_characteristic, html: { novalidate: true }, class: "col s12" do |f| %>
-
-  <% if @beer_characteristic.errors.any? %>
-    <% @beer_characteristic.errors.each do |attribute, message| %>
-      <%= content_tag :li, message, class: "error" %>
-    <% end %>
-  <% end %>
-
-  <br/>
-  <div class="row">
-    <div class="input-field col s6">
-      <%= f.text_field :name, class: 'validate' %>
-      <%= f.label :name, "Nome" %>
-    </div>
-
-    <div class="input-field col s6">
-      <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
-        <i class="material-icons">add</i>
-       </button>
-    </div>
-  </div>
-<% end %>
-
-<h5>Existentes</h5><br/>
-<div class="chips-initial" style="border-bottom: 0px;"></div>
-
-<!-- Modal Structure Confirm-->
-<%= render partial:"shared/delete_modal", locals: { title: "característica" } %>
-
-<!-- Modal Structure Container -->
-<div id="edit_chip_modal" class="modal"></div>
+<%= render partial:"shared/chip_page", locals: {
+  chip: @beer_characteristic,
+  flash: flash,
+  types: @types,
+  controller: "beer_characteristics",
+  title: "característica",
+  url: beer_characteristics_url } %>
