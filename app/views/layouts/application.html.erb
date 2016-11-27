@@ -28,13 +28,13 @@
 
         <li><div class="divider"></div></li>
         <li><a class="subheader">Adicionar auxiliares</a></li>
-        <li><%= link_to "Característica", class: "waves-effect" %></li>
+        <li><%= link_to "Característica", beer_characteristics_path, method: :get, class: "waves-effect" %></li>
         <li><%= link_to "Característica cerveja", class: "waves-effect" %></li>
         <li><%= link_to "Cerveja", class: "waves-effect" %></li>
         <li><%= link_to "Clube extra", class: "waves-effect" %></li>
         <li><%= link_to "Copo", class:"waves-effect" %></li>
         <li><%= link_to "Restrição", class:"waves-effect" %></li>
-        <li><%= link_to "Tipos de cerveja", class: "waves-effect" %></li>
+        <li><%= link_to "Tipos de cerveja", beer_types_path, method: :get, class: "waves-effect" %></li>
         <li><%= link_to "Tipos de copos", glass_types_path, method: :get, class: "waves-effect" %></li>
       </ul>
     </nav>

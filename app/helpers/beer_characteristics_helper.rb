@@ -1,0 +1,2 @@
+module BeerCharacteristicsHelper
+end

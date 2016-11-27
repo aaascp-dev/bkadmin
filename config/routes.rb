@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :glass_types, only: [:index, :create, :destroy, :update, :edit]
+  resources :beer_types, only: [:index, :create, :destroy, :update, :edit]
+  resources :beer_characteristics, only: [:index, :create, :destroy, :update, :edit]
   resources :sessions, only: [:create, :destroy]
   resources :login, only: [:index]
 
