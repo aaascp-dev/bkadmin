@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 20161116051114) do
   end
 
   create_table "beers_beer_characteristics", id: false, force: :cascade do |t|
-    t.integer "beer_id",                 null: false
-    t.integer "beer_characteristics_id", null: false
-    t.index ["beer_characteristics_id"], name: "index_beers_beer_characteristics_on_beer_characteristics_id"
-    t.index ["beer_id", "beer_characteristics_id"], name: "index_beers_beer_characteristics", unique: true
+    t.integer "beer_id",                null: false
+    t.integer "beer_characteristic_id", null: false
+    t.index ["beer_characteristic_id"], name: "index_beers_beer_characteristics_on_beer_characteristic_id"
+    t.index ["beer_id", "beer_characteristic_id"], name: "index_beers_beer_characteristics", unique: true
     t.index ["beer_id"], name: "index_beers_beer_characteristics_on_beer_id"
   end
 

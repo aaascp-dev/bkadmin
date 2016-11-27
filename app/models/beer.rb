@@ -1,6 +1,6 @@
 class Beer < Product
     belongs_to :beer_type
-    has_and_belongs_to_many :beer_characteristics
+    has_and_belongs_to_many :beer_characteristics, join_table: "beers_beer_characteristics"
     validates :beer_type, presence: { message: "Deve ser informado um tipo." }
     validates_associated :beer_type, message: "Tipo informado é inválido"
     validates :code, uniqueness: { message: "Código informado já existe." }

@@ -7,7 +7,8 @@
   <% @types.each do |type| %>
     var tag = {
       tag: "<%= j type.name %>",
-      id: <%= j type.id.to_s %>
+      id: <%= j type.id.to_s %>,
+      controller: "glass_types"
     };
 
     data.push(tag);
@@ -48,21 +49,21 @@
 <div class="chips-initial" style="border-bottom: 0px;"></div>
 
 <!-- Modal Structure Confirm-->
-<div id="delete_chip_confirmation" class="modal">
+<div id="delete_chip_modal" class="modal">
   <div class="modal-content">
     <h4>Remover tipo de copo</h4>
     <p>Tem certeza que deseja excluir permanentemente o tipo de copo:
-      <strong><span id="delete_chip_confirmation_glass_type"></span></strong>
+      <strong><span id="delete_chip_confirmation"></span></strong>
     </p>
   </div>
   <div class="modal-footer">
     <%= link_to "Cancelar", glass_types_url, method: :get,
       class: "modal-action modal-close waves-effect waves-red btn-flat" %>
 
-    <%= link_to "Remover", "", id: :destroy_glass_type_button, method: :delete,
+    <%= link_to "Remover", "", id: :destroy_button, method: :delete,
       class: "modal-action modal-close waves-effect waves-green btn-flat" %>
   </div>
 </div>
 
 <!-- Modal Structure Container -->
-<div id="edit_chip" class="modal"></div>
+<div id="edit_chip_modal" class="modal"></div>
