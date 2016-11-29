@@ -1,0 +1,9 @@
+<h3>Embalagens</h3>
+
+<%= render partial:"shared/chip_page", locals: {
+  chip: @package,
+  flash: flash,
+  types: @packages,
+  controller: "packages",
+  title: "embalagem",
+  url: packages_url } %>

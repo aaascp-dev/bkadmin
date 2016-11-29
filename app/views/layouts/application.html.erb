@@ -23,6 +23,7 @@
         <li><%= link_to "Assinatura", class: "waves-effect" %></li>
         <li><%= link_to "Cliente", class: "waves-effect" %></li>
         <li><%= link_to "Clube", class: "waves-effect" %></li>
+        <li><%= link_to "Fornecedor", providers_path, method: :get,class: "waves-effect" %></li>
         <li><%= link_to "Indicação", class: "waves-effect" %></li>
         <li><%= link_to "Plano", class: "waves-effect" %></li>
 
@@ -30,9 +31,10 @@
         <li><a class="subheader">Adicionar auxiliares</a></li>
         <li><%= link_to "Característica", beer_characteristics_path, method: :get, class: "waves-effect" %></li>
         <li><%= link_to "Característica cerveja", class: "waves-effect" %></li>
-        <li><%= link_to "Cerveja", class: "waves-effect" %></li>
+        <li><%= link_to "Cerveja", beers_path, class: "waves-effect" %></li>
         <li><%= link_to "Clube extra", class: "waves-effect" %></li>
         <li><%= link_to "Copo", class:"waves-effect" %></li>
+        <li><%= link_to "Embalagem", packages_path, method: :get, class: "waves-effect" %></li>
         <li><%= link_to "Restrição", class:"waves-effect" %></li>
         <li><%= link_to "Tipos de cerveja", beer_types_path, method: :get, class: "waves-effect" %></li>
         <li><%= link_to "Tipos de copos", glass_types_path, method: :get, class: "waves-effect" %></li>

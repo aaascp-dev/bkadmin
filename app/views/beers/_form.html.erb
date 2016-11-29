@@ -1,0 +1,95 @@
+<% flash.each do |key, value| %>
+  <%= content_tag :li, value, class: "#{key}" %>
+<% end %>
+
+<%= form_for beer, class: "col s12" do |f| %>
+
+  <% if beer.errors.any? %>
+    <% beer.errors.each do |attribute, message| %>
+      <%= content_tag :li, message, class: "error" %>
+    <% end %>
+  <% end %>
+
+  <br/>
+  <div class="row">
+
+    <div class="input-field col s12">
+      <%= f.collection_select(:beer_type_id, styles, :id, :name) %>
+      <%= f.label :beer_type_id, "Estilo" %>
+    </div>
+
+    <div class="input-field col s12">
+      <select id="provider_id">
+        <option value="" disabled selected>Escolha</option>
+        <% providers.each do |provider| %>
+          <option value="<% provider.id %>">provider.name</option>
+        <% end %>
+      </select>
+      <label>Fornecedor</label>
+    </div>
+
+    <div class="input-field col s12">
+      <select id="package_id">
+        <option value="" disabled selected>Escolha</option>
+        <% packages.each do |pacakge| %>
+          <option value="<% package.id %>">package.name</option>
+        <% end %>
+      </select>
+      <label>Embalagem</label>
+    </div>
+
+    <%= f.check_box :is_better_quality %>
+    <%= f.label :is_better_quality, "Qualidade superior" %>
+
+    <%= f.check_box :is_imported %>
+    <%= f.label :is_imported, "Importada" %>
+
+    <div class="input-field col s6">
+      <%= f.text_field :batch_number %>
+      <%= f.label :batch_number, "LOTE" %>
+    </div>
+
+    <input type="date" class="datepicker" id="expiration_date">
+
+    <div class="input-field col s6">
+      <%= f.text_field :volume %>
+      <%= f.label :volume, "Volume em ml" %>
+    </div>
+
+    <div class="input-field col s6">
+      <%= f.text_field :name %>
+      <%= f.label :nome, "Nome" %>
+    </div>
+
+    <div class="input-field col s6">
+      <%= f.text_field :volume %>
+      <%= f.label :volume, "Volume em ml" %>
+    </div>
+
+    <div class="input-field col s6">
+      <%= f.text_field :price %>
+      <%= f.label :price, "Preço" %>
+    </div>
+
+    <div class="input-field col s6">
+      <%= f.text_field :cost %>
+      <%= f.label :cost, "Custo" %>
+    </div>
+
+    <div class="input-field col s6">
+      <%= f.text_field :name, class: 'validate', autofocus: true %>
+      <%= f.label :name, "Nome" %>
+    </div>
+
+    <div class="input-field col s6">
+      <%= f.text_field :code %>
+      <%= f.label :code, "COD" %>
+    </div>
+
+    <div class="input-field col s6">
+      <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
+        <i class="material-icons">add</i>
+       </button>
+    </div>
+  </div>
+<% end %>

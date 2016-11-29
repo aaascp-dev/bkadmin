@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116051114) do
+ActiveRecord::Schema.define(version: 20161129010652) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "zip_code",     null: false
@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 20161116051114) do
     t.integer  "beer_type_id",                      null: false
     t.boolean  "is_imported",       default: false
     t.boolean  "is_better_quality", default: false
+    t.string   "batch_number"
+    t.date     "expiration_date"
+    t.integer  "volume"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.index ["beer_type_id"], name: "index_beers_on_beer_type_id"
@@ -150,6 +153,13 @@ ActiveRecord::Schema.define(version: 20161116051114) do
     t.index ["product_id"], name: "index_orders_products_on_product_id"
   end
 
+  create_table "packages", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_packages_on_name"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string   "name",                                null: false
     t.decimal  "price",      precision: 16, scale: 2, null: false
@@ -159,12 +169,24 @@ ActiveRecord::Schema.define(version: 20161116051114) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",                                null: false
+    t.string   "name",                                 null: false
     t.integer  "stock"
-    t.decimal  "price",      precision: 16, scale: 2
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.decimal  "price",       precision: 16, scale: 2
+    t.decimal  "cost",        precision: 16, scale: 2
+    t.integer  "provider_id"
+    t.integer  "package_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["name"], name: "index_products_on_name"
+    t.index ["package_id"], name: "index_products_on_package_id"
+    t.index ["provider_id"], name: "index_products_on_provider_id"
+  end
+
+  create_table "providers", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_providers_on_name"
   end
 
   create_table "referrals", force: :cascade do |t|

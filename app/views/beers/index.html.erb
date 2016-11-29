@@ -1,0 +1,48 @@
+<h3>Cadastro de Cerveja</h3>
+
+<br/>
+<%= form_tag beers_path, :method => 'get', class: "col s12" do %>
+  <div class="row">
+    <div class="input-field col s6">
+      <%= text_field_tag :search, params[:search], placeholder: "Procurar por nome...", required: true %>
+      <%= label_tag :search, "Procurar", class: "active" %>
+    </div>
+    <div class="input-field col s6">
+      <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
+        <i class="material-icons">send</i>
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<br/>
+<a href="<%= new_beer_url %>" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Nova Cerveja</a>
+<table class="striped">
+  <thead>
+    <tr>
+      <th data-field="name">Nome</th>
+      <th data-field="style">Estilo</th>
+      <th data-field="price">Preço</th>
+      <th data-field="cost">Custo</th>
+      <th data-field="stock">Estoque</th>
+      <th data-field="actions">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @beers.each do |beer| %>
+      <tr>
+        <td><%= beer.name %></td>
+        <td><%= beer.beer_type.name %></td>
+        <td><%= beer.price %></td>
+        <td><%= beer.cost %></td>
+        <td><%= beer.stock %></td>
+        <td>
+          <%= link_to "Detalhes" %>
+          <%= link_to "Editar"%>
+          <%= link_to "Excluir" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

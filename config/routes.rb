@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   resources :glass_types, only: [:index, :create, :destroy, :update, :edit]
   resources :beer_types, only: [:index, :create, :destroy, :update, :edit]
+  resources :providers, only: [:index, :create, :destroy, :update, :edit]
+  resources :packages, only: [:index, :create, :destroy, :update, :edit]
   resources :beer_characteristics, only: [:index, :create, :destroy, :update, :edit]
+  resources :beers, only: [:index, :new]
   resources :sessions, only: [:create, :destroy]
   resources :login, only: [:index]
 

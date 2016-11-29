@@ -1,0 +1,9 @@
+<h3>Fornecedores</h3>
+
+<%= render partial:"shared/chip_page", locals: {
+  chip: @provider,
+  flash: flash,
+  types: @providers,
+  controller: "providers",
+  title: "fornecedores",
+  url: providers_url } %>
