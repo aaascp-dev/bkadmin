@@ -2,7 +2,7 @@
   <%= content_tag :li, value, class: "#{key}" %>
 <% end %>
 
-<%= form_for beer, class: "col s12" do |f| %>
+<%= form_for beer do |f| %>
 
   <% if beer.errors.any? %>
     <% beer.errors.each do |attribute, message| %>
@@ -12,19 +12,30 @@
 
   <br/>
   <div class="row">
+    <div class="input-field col s3">
+      <%= f.text_field :code %>
+      <%= f.label :code, "COD" %>
+    </div>
 
-    <div class="input-field col s12">
-      <select id="beer_type_id">
+    <div class="input-field col s9">
+      <%= f.text_field :name %>
+      <%= f.label :name, "Nome" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s6">
+      <select name="beer[beer_type_id]">
         <option value="" disabled selected>Escolha</option>
         <% styles.each do |style| %>
           <option value="<%= style.id %>"><%= style.name %></option>
         <% end %>
       </select>
-      <label>Fornecedor</label>
+      <label>Estilo</label>
     </div>
 
-    <div class="input-field col s12">
-      <select id="provider_id">
+    <div class="input-field col s6">
+      <select name="beer[provider_id]">
         <option value="" disabled selected>Escolha</option>
         <% providers.each do |provider| %>
           <option value="<%= provider.id %>"><%= provider.name %></option>
@@ -32,59 +43,81 @@
       </select>
       <label>Fornecedor</label>
     </div>
+  </div>
 
-    <div class="input-field col s12">
-      <select id="package_id">
-        <option value="" disabled selected>Escolha</option>
-        <% packages.each do |pacakge| %>
-          <option value="<%= package.id %>"><%= package.name %></option>
-        <% end %>
-      </select>
-      <label>Embalagem</label>
+  <div class="row">
+    <div class="input-field col s4">
+      <%= f.text_field :price %>
+      <%= f.label :price, "Preço" %>
     </div>
 
-    <%= f.check_box :is_better_quality %>
-    <%= f.label :is_better_quality, "Qualidade superior" %>
-
-    <%= f.check_box :is_imported %>
-    <%= f.label :is_imported, "Importada" %>
-
-    <div class="input-field col s6">
-      <%= f.text_field :batch_number %>
-      <%= f.label :batch_number, "LOTE" %>
+    <div class="input-field col s4">
+      <%= f.text_field :cost %>
+      <%= f.label :cost, "Custo" %>
     </div>
 
-    <input type="date" class="datepicker" id="expiration_date">
-
-    <div class="input-field col s6">
-      <%= f.text_field :code %>
-      <%= f.label :code, "COD" %>
+    <div class="input-field col s4">
+      <%= f.text_field :stock %>
+      <%= f.label :stock, "Estoque" %>
     </div>
+  </div>
 
+  <div class="row">
     <div class="input-field col s6">
       <%= f.text_field :volume %>
       <%= f.label :volume, "Volume em ml" %>
     </div>
 
     <div class="input-field col s6">
-      <%= f.text_field :price %>
-      <%= f.label :price, "Preço" %>
-    </div>
-
-    <div class="input-field col s6">
-      <%= f.text_field :cost %>
-      <%= f.label :cost, "Custo" %>
-    </div>
-
-    <div class="input-field col s6">
-      <%= f.text_field :name, class: 'validate', autofocus: true %>
-      <%= f.label :name, "Nome" %>
-    </div>
-
-    <div class="input-field col s6">
-      <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
-        <i class="material-icons">add</i>
-       </button>
+      <select name="beer[package_id]">
+        <option value="" disabled selected>Escolha</option>
+        <% packages.each do |package| %>
+          <option value="<%= package.id %>"><%= package.name %></option>
+        <% end %>
+      </select>
+      <label>Embalagem</label>
     </div>
   </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <select name="beer[beer_characteristics][]" multiple>
+        <option value="" disabled selected>Escolha</option>
+        <% beer_characteristics.each do |characteristic| %>
+          <option value="<%= characteristic.id %>"><%= characteristic.name %></option>
+        <% end %>
+      </select>
+      <label>Características</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s6">
+      <%= f.text_field :batch_number %>
+      <%= f.label :batch_number, "Lote" %>
+    </div>
+
+    <%= f.label :expiration_date, "Data de validade" %>
+    <%= f.date_field :expiration_date, class: "datepicker col s6", placeholder: "Escolha a data" %>
+  </div>
+
+  <div class="row">
+    <%= f.check_box :is_better_quality, class: "cols s12" %>
+    <%= f.label :is_better_quality, "Qualidade superior" %>
+  </div>
+
+  <div class="row">
+    <%= f.check_box :is_imported, class: "cols s12" %>
+    <%= f.label :is_imported, "Importada"%>
+  </div>
+
+  <div class="right-align">
+    <%= button_tag class: "waves-effect waves-light btn" do %>
+      <i class="material-icons left">send</i>Adicionar
+    <% end %>
+  </div>
 <% end %>
+
+<br/>
+<br/>
+<br/
