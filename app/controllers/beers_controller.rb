@@ -1,6 +1,5 @@
 class BeersController < AdminController
   def index
-    #@beers = Beers.order("LOWER(name)").all
     @beers = Beer.search(params[:search])
   end
 
@@ -12,11 +11,15 @@ class BeersController < AdminController
     @beer_characteristics = BeerCharacteristic.order("LOWER(name)").all
   end
 
+  def show
+    @beer = Beer.find(params[:id])
+  end
+
   def create
     @beer = Beer.new(beer_params)
     if @beer.save
       flash[:success] = "Salvo com sucesso."
-      save_beer_characteristics(@beer.id, params[:beer_characteristics])
+      save_beer_characteristics(@beer, params[:beer_characteristics])
       redirect_to beers_path
     else
       @styles = BeerType.order("LOWER(name)").all
@@ -29,6 +32,10 @@ class BeersController < AdminController
 
   def edit
     @beer = Beer.find(params[:id])
+    @styles = BeerType.order("LOWER(name)").all
+    @providers = Provider.order("LOWER(name)").all
+    @packages = Package.order("LOWER(name)").all
+    @beer_characteristics = BeerCharacteristic.order("LOWER(name)").all
   end
 
   def update
@@ -37,6 +44,10 @@ class BeersController < AdminController
       flash[:success] = "Atualizado com sucesso."
       redirect_to beers_path
     else
+      @styles = BeerType.order("LOWER(name)").all
+      @providers = Provider.order("LOWER(name)").all
+      @packages = Package.order("LOWER(name)").all
+      @beer_characteristics = BeerCharacteristic.order("LOWER(name)").all
       render :edit
     end
   end
@@ -47,15 +58,10 @@ class BeersController < AdminController
   end
 
   private
-    def save_beer_characteristics(beer_id,characteristics)
+    def save_beer_characteristics(beer,characteristics)
       for characteristic in characteristics do
-        attributes = {}
-        attributes[:beer_id] = beer_id
-        attributes[:beer_characteristic_id] = characteristic
-        beer_characteristic = BeersBeerCharacteristic.new(attributes)
-        unless beer_characteristic.save
-          flash[:error] = "Erro ao salvar as características da cerveja, clique em editar para adicionar novamente."
-        end
+        beer_characteristics = BeerCharacteristic.find(characteristic)
+        beer.beer_characteristics << beer_characteristics
       end
     end
 

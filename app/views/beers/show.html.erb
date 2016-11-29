@@ -1,0 +1,21 @@
+
+<p>ID: <%= @beer.id %></p>
+<p>COD: <%= @beer.code %></p>
+<p>Nome: <%= @beer.name %></p>
+<p>Lote: <%= @beer.batch_number %></p>
+<p>Data de validade: <%= @beer.expiration_date %></p>
+<p>Volume: <%= @beer.volume %>ml</p>
+<p>Preço: <%= @beer.price %></p>
+<p>Custo: <%= @beer.cost %></p>
+<p>Estoque: <%= @beer.stock %></p>
+<p>Importada? <%= @beer.is_imported %></p>
+<p>Qualidade superior? <%= @beer.is_better_quality %></p>
+<p>Estilo: <%= @beer.beer_type.name %></p>
+<p>Fornecedor: <%= @beer.provider.name %></p>
+<p>Embalagem: <%= @beer.package.name %></p>
+
+<ul>
+  <% @beer.beer_characteristics.each do |characteristic| %>
+    <li><%= characteristic.name %></li>
+  <% end %>
+</ul>

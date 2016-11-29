@@ -81,7 +81,7 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <select name="beer[beer_characteristics][]" multiple>
+      <select name="beer_characteristics[]" multiple>
         <option value="" disabled selected>Escolha</option>
         <% beer_characteristics.each do |characteristic| %>
           <option value="<%= characteristic.id %>"><%= characteristic.name %></option>

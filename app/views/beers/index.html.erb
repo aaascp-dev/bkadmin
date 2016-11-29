@@ -38,11 +38,27 @@
         <td><%= beer.cost %></td>
         <td><%= beer.stock %></td>
         <td>
-          <%= link_to "Detalhes" %>
-          <%= link_to "Editar"%>
-          <%= link_to "Excluir" %>
+          <%= link_to "Detalhes", beer_path(beer.id) %>
+          <%= link_to "Editar", edit_beer_path(beer.id) %>
+          <%= link_to "Excluir", beer_path(beer.id), method: :delete %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div id="delete_chip_modal" class="modal">
+  <div class="modal-content">
+    <h4>Remover cerveja</h4>
+    <p>Tem certeza que deseja excluir:
+      <strong><span id="delete_chip_confirmation"></span></strong>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Cancelar", "",
+      class: "modal-action modal-close waves-effect waves-green btn-flat" %>
+
+    <%= link_to "Remover", beer_path(beer.id),
+      class: "modal-action modal-close waves-effect waves-red btn-flat" %>
+  </div>
+</div>
