@@ -14,15 +14,20 @@
   <div class="row">
 
     <div class="input-field col s12">
-      <%= f.collection_select(:beer_type_id, styles, :id, :name) %>
-      <%= f.label :beer_type_id, "Estilo" %>
+      <select id="beer_type_id">
+        <option value="" disabled selected>Escolha</option>
+        <% styles.each do |style| %>
+          <option value="<%= style.id %>"><%= style.name %></option>
+        <% end %>
+      </select>
+      <label>Fornecedor</label>
     </div>
 
     <div class="input-field col s12">
       <select id="provider_id">
         <option value="" disabled selected>Escolha</option>
         <% providers.each do |provider| %>
-          <option value="<% provider.id %>">provider.name</option>
+          <option value="<%= provider.id %>"><%= provider.name %></option>
         <% end %>
       </select>
       <label>Fornecedor</label>
@@ -32,7 +37,7 @@
       <select id="package_id">
         <option value="" disabled selected>Escolha</option>
         <% packages.each do |pacakge| %>
-          <option value="<% package.id %>">package.name</option>
+          <option value="<%= package.id %>"><%= package.name %></option>
         <% end %>
       </select>
       <label>Embalagem</label>
@@ -52,13 +57,8 @@
     <input type="date" class="datepicker" id="expiration_date">
 
     <div class="input-field col s6">
-      <%= f.text_field :volume %>
-      <%= f.label :volume, "Volume em ml" %>
-    </div>
-
-    <div class="input-field col s6">
-      <%= f.text_field :name %>
-      <%= f.label :nome, "Nome" %>
+      <%= f.text_field :code %>
+      <%= f.label :code, "COD" %>
     </div>
 
     <div class="input-field col s6">
@@ -79,11 +79,6 @@
     <div class="input-field col s6">
       <%= f.text_field :name, class: 'validate', autofocus: true %>
       <%= f.label :name, "Nome" %>
-    </div>
-
-    <div class="input-field col s6">
-      <%= f.text_field :code %>
-      <%= f.label :code, "COD" %>
     </div>
 
     <div class="input-field col s6">

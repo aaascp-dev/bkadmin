@@ -42,16 +42,25 @@ ActiveRecord::Schema.define(version: 20161129010652) do
 
   create_table "beers", force: :cascade do |t|
     t.integer  "code"
-    t.integer  "beer_type_id",                      null: false
-    t.boolean  "is_imported",       default: false
-    t.boolean  "is_better_quality", default: false
+    t.integer  "beer_type_id",                                               null: false
+    t.boolean  "is_imported",                                default: false
+    t.boolean  "is_better_quality",                          default: false
     t.string   "batch_number"
     t.date     "expiration_date"
     t.integer  "volume"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "name",                                                       null: false
+    t.integer  "stock"
+    t.decimal  "price",             precision: 16, scale: 2
+    t.decimal  "cost",              precision: 16, scale: 2
+    t.integer  "provider_id"
+    t.integer  "package_id"
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.index ["beer_type_id"], name: "index_beers_on_beer_type_id"
     t.index ["code"], name: "index_beers_on_code"
+    t.index ["name"], name: "index_beers_on_name"
+    t.index ["package_id"], name: "index_beers_on_package_id"
+    t.index ["provider_id"], name: "index_beers_on_provider_id"
   end
 
   create_table "beers_beer_characteristics", id: false, force: :cascade do |t|
@@ -127,9 +136,12 @@ ActiveRecord::Schema.define(version: 20161129010652) do
 
   create_table "glasses", force: :cascade do |t|
     t.integer  "glass_type_id"
-    t.string   "name",          null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "name",                                   null: false
+    t.integer  "stock"
+    t.decimal  "price",         precision: 16, scale: 2
+    t.decimal  "cost",          precision: 16, scale: 2
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["glass_type_id"], name: "index_glasses_on_glass_type_id"
     t.index ["name"], name: "index_glasses_on_name"
   end
@@ -169,17 +181,11 @@ ActiveRecord::Schema.define(version: 20161129010652) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",                                 null: false
-    t.integer  "stock"
-    t.decimal  "price",       precision: 16, scale: 2
-    t.decimal  "cost",        precision: 16, scale: 2
-    t.integer  "provider_id"
-    t.integer  "package_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.index ["name"], name: "index_products_on_name"
-    t.index ["package_id"], name: "index_products_on_package_id"
-    t.index ["provider_id"], name: "index_products_on_provider_id"
+    t.string   "is_product_type", null: false
+    t.integer  "is_product_id",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["is_product_type", "is_product_id"], name: "index_product"
   end
 
   create_table "providers", force: :cascade do |t|
