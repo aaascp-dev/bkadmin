@@ -16,7 +16,7 @@
 <% end %>
 
 <br/>
-<a href="<%= new_beer_url %>" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Nova Cerveja</a>
+<%= link_to "Nova Cerveja", new_beer_path, method: :get, class: "waves-effect waves-light btn" %>
 <table class="striped">
   <thead>
     <tr>
@@ -40,7 +40,7 @@
         <td>
           <%= link_to "Detalhes", beer_path(beer.id) %>
           <%= link_to "Editar", edit_beer_path(beer.id) %>
-          <%= link_to "Excluir", beer_path(beer.id), method: :delete %>
+          <%= link_to "Excluir" %>
         </td>
       </tr>
     <% end %>
@@ -58,7 +58,7 @@
     <%= link_to "Cancelar", "",
       class: "modal-action modal-close waves-effect waves-green btn-flat" %>
 
-    <%= link_to "Remover", beer_path(beer.id),
+    <%= link_to "Remover",
       class: "modal-action modal-close waves-effect waves-red btn-flat" %>
   </div>
 </div>
