@@ -1,0 +1,70 @@
+<%= form_for glass do |f| %>
+
+  <% if glass.errors.any? %>
+    <% glass.errors.each do |attribute, message| %>
+      <%= content_tag :li, message, class: "error" %>
+    <% end %>
+  <% end %>
+
+  <br/>
+  <div class="row">
+    <div class="input-field col s9">
+      <%= f.text_field :name %>
+      <%= f.label :name, "Nome" %>
+    </div>
+
+    <div class="input-field col s3">
+      <%= f.text_field :volume %>
+      <%= f.label :volume, "Volume em ml" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s6">
+      <select name="glass[glass_type_id]">
+        <option value="" disabled selected>Escolha</option>
+        <% types.each do |type| %>
+          <option value="<%= type.id %>" <%= type_selected(glass, type) %>><%= type.name %></option>
+        <% end %>
+      </select>
+      <label>Tipo</label>
+    </div>
+
+    <div class="input-field col s6">
+      <select name="glass[provider_id]">
+        <option value="" disabled selected>Escolha</option>
+        <% providers.each do |provider| %>
+          <option value="<%= provider.id %>" <%= provider_selected(glass, provider) %>><%= provider.name %></option>
+        <% end %>
+      </select>
+      <label>Fornecedor</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s4">
+      <%= f.text_field :price, value: number_with_precision(@glass.price, precision: 2) %>
+      <%= f.label :price, "Preço" %>
+    </div>
+
+    <div class="input-field col s4">
+      <%= f.text_field :cost, value: number_with_precision(@glass.cost, precision: 2) %>
+      <%= f.label :cost, "Custo" %>
+    </div>
+
+    <div class="input-field col s4">
+      <%= f.text_field :stock %>
+      <%= f.label :stock, "Estoque" %>
+    </div>
+  </div>
+
+  <div class="right-align">
+    <%= button_tag class: "waves-effect waves-light btn" do %>
+      <i class="material-icons left">send</i><%= button_name %>
+    <% end %>
+  </div>
+<% end %>
+
+<br/>
+<br/>
+<br/>

@@ -54,7 +54,11 @@ class BeersController < AdminController
   end
 
   def destroy
-    Beer.find(params[:id]).destroy
+    if Beer.find(params[:id]).destroy
+      flash[:success] = "Exlcuído com sucesso."
+    else
+      flash[:error] = "Falha ao excluir. Tente novamente."
+    end
     redirect_to beers_path
   end
 

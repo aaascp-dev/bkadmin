@@ -1,0 +1,61 @@
+<h3>Cadastro de Copos</h3>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :li, value, class: "#{key}" %>
+<% end %>
+
+
+<br/>
+<%= form_tag glasses_path, :method => 'get', class: "col s12" do %>
+  <div class="row">
+    <div class="input-field col s6">
+      <%= text_field_tag :search, params[:search], placeholder: "Procurar por nome...", required: true %>
+      <%= label_tag :search, "Procurar", class: "active" %>
+    </div>
+    <div class="input-field col s6">
+      <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
+        <i class="material-icons">send</i>
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<br/>
+<%= link_to "Novo Copo", new_glass_path, method: :get, class: "waves-effect waves-light btn" %>
+<table class="striped">
+  <thead>
+    <tr>
+      <th data-field="name">Nome</th>
+      <th data-field="volume">Volume</th>
+      <th data-field="glass_type">Type</th>
+      <th data-field="provider">Fornecedor</th>
+      <th data-field="price">Preço</th>
+      <th data-field="cost">Custo</th>
+      <th data-field="stock">Estoque</th>
+      <th data-field="actions" colspan="2">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @glasses.each do |glass| %>
+      <tr>
+        <td><%= glass.name %></td>
+        <td><%= glass.volume %></td>
+        <td><%= glass.glass_type.name %></td>
+        <td><%= glass.provider.name %></td>
+        <td><%= number_to_currency(glass.price, unit: "R$", separator: ",") %></td>
+        <td><%= number_to_currency(glass.cost, unit: "R$", separator: ",") %></td>
+        <td><%= glass.stock %></td>
+        <td><%= link_to "Editar", edit_glass_path(glass.id), method: :get %></td>
+        <td>
+          <%= link_to "Excluir", glass_path(glass.id), method: :delete,
+           data: { confirm: "Tem certeza que deseja excluir o copo?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>

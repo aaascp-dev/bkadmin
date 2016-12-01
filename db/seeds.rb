@@ -7,12 +7,32 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
 r = Random.new(123)
-b = [true, false]
+bools = [true, false]
 
-GlassType.create(name: "Tipo A")
-GlassType.create(name: "Tipo B")
-GlassType.create(name: "Tipo C")
-GlassType.create(name: "Tipo D")
+volumes = ["300", "500", "600", "1000"]
+
+provider1 = Provider.create(name: "Fornecedor 1")
+provider2 = Provider.create(name: "Fornecedor 2")
+provider3 = Provider.create(name: "Fornecedor 3")
+provider4 = Provider.create(name: "Fornecedor 4")
+providers = [provider1, provider2, provider3, provider4]
+
+glass_type1 = GlassType.create(name: "Tipo A")
+glass_type2 = GlassType.create(name: "Tipo B")
+glass_type3 = GlassType.create(name: "Tipo C")
+glass_type4 = GlassType.create(name: "Tipo D")
+glass_types = [glass_type1,glass_type2,glass_type3,glass_type4]
+
+for i in 1..10
+  Glass.create(
+              name: "Copo #{i}",
+              volume: volumes[r.rand(volumes.size)],
+              glass_type: glass_types[r.rand(glass_types.size)],
+              provider: providers[r.rand(providers.size)],
+              price: (1500 + r.rand(1500))/100,
+              cost: (500 + r.rand(1000))/100,
+              stock: 1 + r.rand(200))
+end
 
 pale_ale = BeerType.create(name: "Pale Ale")
 ipa = BeerType.create(name: "India Pale Ale")
@@ -21,17 +41,9 @@ stout = BeerType.create(name: "Stout")
 lager = BeerType.create(name: "Lager")
 styles = [pale_ale, ipa, witbier, stout, lager]
 
-provider1 = Provider.create(name: "Fornecedor 1")
-provider2 = Provider.create(name: "Fornecedor 2")
-provider3 = Provider.create(name: "Fornecedor 3")
-provider4 = Provider.create(name: "Fornecedor 4")
-providers = [provider1, provider2, provider3, provider4]
-
 bottle = Package.create(name: "Garrafa")
 can = Package.create(name: "Lata")
 packages = [bottle, can]
-
-volumes = ["300", "500", "600", "1000"]
 
 bitter = BeerCharacteristic.create(name: "Amarga")
 sweet = BeerCharacteristic.create(name: "Doce")
@@ -52,8 +64,8 @@ for i in 1..10
                       package: packages[r.rand(packages.size)],
                       batch_number: "l" + rand(100).to_s,
                       expiration_date: Date.new(2017 + r.rand(5), 1 + r.rand(12), 1 + r.rand(30)),
-                      is_imported: b[r.rand(b.size)],
-                      is_better_quality: b[r.rand(b.size)])
+                      is_imported: bools[r.rand(bools.size)],
+                      is_better_quality: bools[r.rand(bools.size)])
 
   beers << beer
 end

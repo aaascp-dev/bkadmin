@@ -136,14 +136,17 @@ ActiveRecord::Schema.define(version: 20161129010652) do
 
   create_table "glasses", force: :cascade do |t|
     t.integer  "glass_type_id"
+    t.integer  "provider_id"
     t.string   "name",                                   null: false
     t.integer  "stock"
     t.decimal  "price",         precision: 16, scale: 2
     t.decimal  "cost",          precision: 16, scale: 2
+    t.integer  "volume"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.index ["glass_type_id"], name: "index_glasses_on_glass_type_id"
     t.index ["name"], name: "index_glasses_on_name"
+    t.index ["provider_id"], name: "index_glasses_on_provider_id"
   end
 
   create_table "orders", force: :cascade do |t|
