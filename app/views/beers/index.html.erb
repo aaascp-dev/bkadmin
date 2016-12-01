@@ -1,5 +1,10 @@
 <h3>Cadastro de Cerveja</h3>
 
+<% flash.each do |key, value| %>
+  <%= content_tag :li, value, class: "#{key}" %>
+<% end %>
+
+
 <br/>
 <%= form_tag beers_path, :method => 'get', class: "col s12" do %>
   <div class="row">
