@@ -4,7 +4,17 @@
 $ ->
   $('.datepicker').pickadate({
     selectMonths: true,
-    selectYears: 15
+    selectYears: 15,
+    format: 'dd-mm-yyyy',
+    closeOnSelect: true,
+    monthsFull: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Decembro' ],
+    monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dec' ],
+    weekdaysFull: [ 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+    weekdaysShort: [ 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom' ],
+    today: 'Hoje',
+    clear: 'Limpar',
+    close: 'Fechar'
   })
 
   $('select').material_select()

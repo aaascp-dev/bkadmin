@@ -20,27 +20,30 @@
 <table class="striped">
   <thead>
     <tr>
+      <th data-field="code">COD</th>
       <th data-field="name">Nome</th>
       <th data-field="style">Estilo</th>
       <th data-field="price">Preço</th>
       <th data-field="cost">Custo</th>
       <th data-field="stock">Estoque</th>
-      <th data-field="actions">Ações</th>
+      <th data-field="actions" colspan="3">Ações</th>
     </tr>
   </thead>
 
   <tbody>
     <% @beers.each do |beer| %>
       <tr>
+        <td><%= beer.code %></td>
         <td><%= beer.name %></td>
         <td><%= beer.beer_type.name %></td>
         <td><%= beer.price %></td>
         <td><%= beer.cost %></td>
         <td><%= beer.stock %></td>
+        <td><%= link_to "Detalhes", beer_path(beer.id) %></td>
+        <td><%= link_to "Editar", edit_beer_path(beer.id) %></td>
         <td>
-          <%= link_to "Detalhes", beer_path(beer.id) %>
-          <%= link_to "Editar", edit_beer_path(beer.id) %>
-          <%= link_to "Excluir" %>
+          <%= link_to "Excluir", beer_path(beer.id), method: :delete,
+           data: { confirm: "Tem certeza que deseja excluir a cerveja?" } %>
         </td>
       </tr>
     <% end %>

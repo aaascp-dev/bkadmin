@@ -28,7 +28,7 @@
       <select name="beer[beer_type_id]">
         <option value="" disabled selected>Escolha</option>
         <% styles.each do |style| %>
-          <option value="<%= style.id %>"><%= style.name %></option>
+          <option value="<%= style.id %>" <%= style_selected(beer, style) %>><%= style.name %></option>
         <% end %>
       </select>
       <label>Estilo</label>
@@ -38,7 +38,7 @@
       <select name="beer[provider_id]">
         <option value="" disabled selected>Escolha</option>
         <% providers.each do |provider| %>
-          <option value="<%= provider.id %>"><%= provider.name %></option>
+          <option value="<%= provider.id %>" <%= provider_selected(beer, provider) %>><%= provider.name %></option>
         <% end %>
       </select>
       <label>Fornecedor</label>
@@ -72,7 +72,7 @@
       <select name="beer[package_id]">
         <option value="" disabled selected>Escolha</option>
         <% packages.each do |package| %>
-          <option value="<%= package.id %>"><%= package.name %></option>
+          <option value="<%= package.id %>" <%= package_selected(beer, package) %>><%= package.name %></option>
         <% end %>
       </select>
       <label>Embalagem</label>
@@ -84,7 +84,9 @@
       <select name="beer_characteristics[]" multiple>
         <option value="" disabled selected>Escolha</option>
         <% beer_characteristics.each do |characteristic| %>
-          <option value="<%= characteristic.id %>"><%= characteristic.name %></option>
+          <option value="<%= characteristic.id %>" <%= characteristic_selected(beer, characteristic) %>>
+            <%= characteristic.name %>
+          </option>
         <% end %>
       </select>
       <label>Características</label>
