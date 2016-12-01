@@ -20,14 +20,6 @@ class Beer < ApplicationRecord
   validates :stock, numericality: { only_integer: true, message: "Quantidade em estoque deve ser um numero inteiro." }
   validates :price, numericality: { message: "Preço deve ser um valor numérico." }
 
-  def self.search(search)
-    if search
-      find(conditions: ['name LIKE ?', "%#{search}%"], order: "LOWER(name)")
-    else
-      all()
-    end
-  end
-
   private
     def valid_date
       errors.add(:expiration_date, "Data de validade inválida.") if expiration_date.nil?
