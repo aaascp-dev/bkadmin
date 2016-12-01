@@ -6,6 +6,7 @@ class CreateClients < ActiveRecord::Migration[5.0]
       t.date :birthdate
       t.string :email, index: true, unique: true, null: false
       t.string :phone
+      t.integer :document_number, index: true, unique: true, null: false
 
       t.timestamps
     end

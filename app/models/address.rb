@@ -1,4 +1,6 @@
 class Address < ApplicationRecord
-  has_one :client
-  validates :zip_code, presence: { message: "O CEP deve ser informado." } 
+  belongs_to :client
+  validates :zip_code, presence: { message: "O CEP deve ser informado." }
+  validates :client, presence: { message: "Client deve ser informado um tipo." }
+  validates_associated :client, message: "Cliente informado é inválido."
 end
