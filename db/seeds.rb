@@ -11,6 +11,11 @@ bools = [true, false]
 
 volumes = ["300", "500", "600", "1000"]
 
+ExtraType.create(name: "Indicação")
+ExtraType.create(name: "Novo Cliente")
+ExtraType.create(name: "Campanha Facebook")
+ExtraType.create(name: "Copo 3 meses")
+
 provider1 = Provider.create(name: "Fornecedor 1")
 provider2 = Provider.create(name: "Fornecedor 2")
 provider3 = Provider.create(name: "Fornecedor 3")

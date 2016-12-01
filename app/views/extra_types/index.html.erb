@@ -1,0 +1,9 @@
+<h3>Tipos de copos</h3>
+
+<%= render partial:"shared/chip_page", locals: {
+  chip: @extra_type,
+  flash: flash,
+  types: @types,
+  controller: "extra_types",
+  title: "tipo de extra",
+  url: extra_types_url } %>

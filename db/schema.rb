@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129010652) do
+ActiveRecord::Schema.define(version: 20161201142046) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "zip_code",     null: false
@@ -93,18 +93,20 @@ ActiveRecord::Schema.define(version: 20161129010652) do
   end
 
   create_table "club_extras", force: :cascade do |t|
-    t.integer  "club_id",    null: false
-    t.string   "extra_type", null: false
-    t.integer  "extra_id",   null: false
-    t.integer  "client_id",  null: false
+    t.integer  "club_id",       null: false
+    t.string   "extra_type",    null: false
+    t.integer  "extra_id",      null: false
+    t.integer  "client_id",     null: false
+    t.integer  "extra_type_id"
     t.text     "comments"
-    t.integer  "quantity",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "quantity",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["client_id"], name: "index_club_extras_on_client_id"
     t.index ["club_id", "extra_id", "extra_type", "client_id"], name: "index_club_extra", unique: true
     t.index ["club_id"], name: "index_club_extras_on_club_id"
     t.index ["extra_type", "extra_id"], name: "index_club_extras_on_extra_type_and_extra_id"
+    t.index ["extra_type_id"], name: "index_club_extras_on_extra_type_id"
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -125,6 +127,13 @@ ActiveRecord::Schema.define(version: 20161129010652) do
     t.index ["club_id", "product_id"], name: "index_clubs_products_on_club_id_and_product_id", unique: true
     t.index ["club_id"], name: "index_clubs_products_on_club_id"
     t.index ["product_id"], name: "index_clubs_products_on_product_id"
+  end
+
+  create_table "extra_types", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_extra_types_on_name"
   end
 
   create_table "glass_types", force: :cascade do |t|

@@ -4,6 +4,7 @@ class CreateClubExtras < ActiveRecord::Migration[5.0]
       t.belongs_to :club, index: true, null: false
       t.belongs_to :extra, polymorphic: true, null: false
       t.belongs_to :client, index: true, null: false
+      t.belongs_to :extra_type
       t.text :comments
       t.integer :quantity, null: false
 
