@@ -36,8 +36,8 @@
         <td><%= beer.code %></td>
         <td><%= beer.name %></td>
         <td><%= beer.beer_type.name %></td>
-        <td><%= beer.price %></td>
-        <td><%= beer.cost %></td>
+        <td><%= number_to_currency(beer.price, unit: "R$", separator: ",") %></td>
+        <td><%= number_to_currency(beer.cost, unit: "R$", separator: ",") %></td>
         <td><%= beer.stock %></td>
         <td><%= link_to "Detalhes", beer_path(beer.id) %></td>
         <td><%= link_to "Editar", edit_beer_path(beer.id), method: :get %></td>
@@ -50,18 +50,6 @@
   </tbody>
 </table>
 
-<div id="delete_chip_modal" class="modal">
-  <div class="modal-content">
-    <h4>Remover cerveja</h4>
-    <p>Tem certeza que deseja excluir:
-      <strong><span id="delete_chip_confirmation"></span></strong>
-    </p>
-  </div>
-  <div class="modal-footer">
-    <%= link_to "Cancelar", "",
-      class: "modal-action modal-close waves-effect waves-green btn-flat" %>
-
-    <%= link_to "Remover",
-      class: "modal-action modal-close waves-effect waves-red btn-flat" %>
-  </div>
-</div>
+<br>
+<br>
+<br>

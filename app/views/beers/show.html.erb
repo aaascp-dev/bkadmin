@@ -5,8 +5,8 @@
 <p>Lote: <%= @beer.batch_number %></p>
 <p>Data de validade: <%= @beer.expiration_date %></p>
 <p>Volume: <%= @beer.volume %>ml</p>
-<p>Preço: <%= @beer.price %></p>
-<p>Custo: <%= @beer.cost %></p>
+<p>Preço: <%= number_to_currency(@beer.price, unit: "R$", separator: ",") %></p>
+<p>Custo: <%= number_to_currency(@beer.cost, unit: "R$", separator: ",") %></p>
 <p>Estoque: <%= @beer.stock %></p>
 <p>Importada? <%= @beer.is_imported %></p>
 <p>Qualidade superior? <%= @beer.is_better_quality %></p>

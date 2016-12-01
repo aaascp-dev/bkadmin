@@ -2,20 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15,
-    format: 'dd-mm-yyyy',
-    closeOnSelect: true,
-    monthsFull: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                  'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Decembro' ],
-    monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dec' ],
-    weekdaysFull: [ 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
-    weekdaysShort: [ 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom' ],
-    today: 'Hoje',
-    clear: 'Limpar',
-    close: 'Fechar'
-  })
+
+  #$(".date").mask("99-99-9999",{placeholder:"dd-mm-yyyy"})
+  $(".date").inputmask("99/99/9999",{ "placeholder": "dd-mm-aaaa"});
+  $(".money").inputmask("99.999999",{ "placeholder": ""});
+
 
   $('select').material_select()
 

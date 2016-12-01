@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require materialize-sprockets
+//= require jquery.inputmask
 $("document").ready(function(){
   $(".button-collapse").sideNav();
-}); 
+});
