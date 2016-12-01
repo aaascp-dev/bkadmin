@@ -40,7 +40,7 @@
         <td><%= beer.cost %></td>
         <td><%= beer.stock %></td>
         <td><%= link_to "Detalhes", beer_path(beer.id) %></td>
-        <td><%= link_to "Editar", edit_beer_path(beer.id) %></td>
+        <td><%= link_to "Editar", edit_beer_path(beer.id), method: :get %></td>
         <td>
           <%= link_to "Excluir", beer_path(beer.id), method: :delete,
            data: { confirm: "Tem certeza que deseja excluir a cerveja?" } %>
