@@ -40,8 +40,9 @@ class BeersController < AdminController
 
   def update
     @beer = Beer.find(params[:id])
-    if @beer.update_attributes(package_params)
+    if @beer.update_attributes(beer_params)
       flash[:success] = "Atualizado com sucesso."
+      update_beer_characteristics(@beer, params[:beer_characteristics])
       redirect_to beers_path
     else
       @styles = BeerType.order("LOWER(name)").all
@@ -60,9 +61,18 @@ class BeersController < AdminController
   private
     def save_beer_characteristics(beer,characteristics)
       for characteristic in characteristics do
-        beer_characteristics = BeerCharacteristic.find(characteristic)
-        beer.beer_characteristics << beer_characteristics
+        beer_characteristic = BeerCharacteristic.find(characteristic)
+        beer.beer_characteristics << beer_characteristic
       end
+    end
+
+    def update_beer_characteristics(beer,characteristics)
+      beer_characteristics = []
+      for characteristic in characteristics do
+        beer_characteristic = BeerCharacteristic.find(characteristic)
+        beer_characteristics << beer_characteristic
+      end
+      beer.beer_characteristics.replace(beer_characteristics)
     end
 
     def beer_params

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :providers, only: [:index, :create, :destroy, :update, :edit]
   resources :packages, only: [:index, :create, :destroy, :update, :edit]
   resources :beer_characteristics, only: [:index, :create, :destroy, :update, :edit]
-  resources :beers, only: [:index, :new, :create, :show, :edit, :destroy]
+  resources :beers, only: [:index, :new, :create, :update, :show, :edit, :destroy]
   resources :sessions, only: [:create, :destroy]
   resources :login, only: [:index]
 

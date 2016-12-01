@@ -58,7 +58,7 @@ for i in 1..10
   beers << beer
 end
 
-for i in 1..100
+for i in 1..30
   beer = beers[r.rand(beers.size)]
   characteristic = characteristics[r.rand(characteristics.size)]
   unless beer.beer_characteristics.include? characteristic
