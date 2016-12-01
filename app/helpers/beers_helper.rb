@@ -22,4 +22,12 @@ module BeersHelper
       return "selected"
     end
   end
+
+  def boolean_to_text(value)
+    if value
+      return "Sim"
+    else
+      return "Não"
+    end
+  end
 end

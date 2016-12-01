@@ -1,21 +1,37 @@
+<h3>Detalhes de cerveja</h3>
+<table class="striped">
+  <thead>
+    <tr>
+      <th>Atributo</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
 
-<p>ID: <%= @beer.id %></p>
-<p>COD: <%= @beer.code %></p>
-<p>Nome: <%= @beer.name %></p>
-<p>Lote: <%= @beer.batch_number %></p>
-<p>Data de validade: <%= @beer.expiration_date %></p>
-<p>Volume: <%= @beer.volume %>ml</p>
-<p>Preço: <%= number_to_currency(@beer.price, unit: "R$", separator: ",") %></p>
-<p>Custo: <%= number_to_currency(@beer.cost, unit: "R$", separator: ",") %></p>
-<p>Estoque: <%= @beer.stock %></p>
-<p>Importada? <%= @beer.is_imported %></p>
-<p>Qualidade superior? <%= @beer.is_better_quality %></p>
-<p>Estilo: <%= @beer.beer_type.name %></p>
-<p>Fornecedor: <%= @beer.provider.name %></p>
-<p>Embalagem: <%= @beer.package.name %></p>
+  <tbody>
+    <tr><td>ID</td><td><%= @beer.id %></td></tr>
+    <tr><td>COD</td><td><%= @beer.code %></td></tr>
+    <tr><td>Nome</td><td><%= @beer.name %></td></tr>
+    <tr><td>Estilo</td><td><%= @beer.beer_type.name %></td></tr>
+    <tr><td>Fornecedor</td><td><%= @beer.provider.name %></td></tr>
+    <tr><td>Preço</td><td><%= number_to_currency(@beer.price, unit: "R$", separator: ",") %></td></tr>
+    <tr><td>Custo</td><td><%= number_to_currency(@beer.cost, unit: "R$", separator: ",") %></td></tr>
+    <tr><td>Estoque</td><td><%= @beer.stock %></td></tr>
+    <tr><td>Lote</td><td><%= @beer.batch_number %></td></tr>
+    <tr><td>Data de validade</td><td><%= @beer.expiration_date %></td></tr>
+    <tr><td>Volume</td><td><%= @beer.volume %>ml</td></tr>
+    <tr><td>Embalagem</td><td><%= @beer.package.name %></td></tr>
+    <tr><td>Importada</td><td><%= boolean_to_text @beer.is_imported %></td></tr>
+    <tr><td>Qualidade superior</td><td><%= boolean_to_text @beer.is_better_quality %></td></tr>
+  </tbody>
+</table>
 
-<ul>
-  <% @beer.beer_characteristics.each do |characteristic| %>
-    <li><%= characteristic.name %></li>
-  <% end %>
-</ul>
+<h5>Características da cerveja</h5>
+<% @beer.beer_characteristics.each do |characteristic| %>
+<div class="chip">
+    <%= characteristic.name %>
+  </div>
+<% end %>
+
+<br>
+<br>
+<br>
