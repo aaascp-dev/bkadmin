@@ -2,11 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-
-  #$(".date").mask("99-99-9999",{placeholder:"dd-mm-yyyy"})
   $(".date").inputmask("9999/99/99",{ "placeholder": "aaaa-mm-dd"});
-  $(".money").inputmask("99.999999",{ "placeholder": ""});
-
 
   $('select').material_select()
 
