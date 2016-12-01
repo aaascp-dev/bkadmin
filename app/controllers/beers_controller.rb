@@ -1,12 +1,6 @@
 class BeersController < AdminController
   def index
-    search = params[:search]
-    if (params[:search])
-      @beers = Beer.order("LOWER(name)")
-      .where("name LIKE ?", "%#{search}%")
-    else
-      @beers = Beer.order("LOWER(name)").all
-    end
+    @beers = Beer.search(params[:search])
   end
 
   def new

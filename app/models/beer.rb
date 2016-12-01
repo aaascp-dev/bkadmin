@@ -24,4 +24,12 @@ class Beer < ApplicationRecord
     def valid_date
       errors.add(:expiration_date, "Data de validade inválida.") if expiration_date.nil?
     end
+
+    def self.search(search)
+      if search
+        order("LOWER(name)").where("name LIKE ?", "%#{search}%")
+      else
+        order("LOWER(name)").all
+      end
+    end
 end
