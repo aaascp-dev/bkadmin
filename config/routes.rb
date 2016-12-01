@@ -3,14 +3,19 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :glass_types, only: [:index, :create, :destroy, :update, :edit]
-  resources :beer_types, only: [:index, :create, :destroy, :update, :edit]
-  resources :extra_types, only: [:index, :create, :destroy, :update, :edit]
-  resources :providers, only: [:index, :create, :destroy, :update, :edit]
-  resources :packages, only: [:index, :create, :destroy, :update, :edit]
-  resources :beer_characteristics, only: [:index, :create, :destroy, :update, :edit]
-  resources :beers, only: [:index, :new, :create, :update, :show, :edit, :destroy]
-  resources :glasses, only: [:index, :new, :create, :update, :edit, :destroy]
+  resources :glass_types, except: [:new, :show]
+  resources :beer_types, except: [:new, :show]
+  resources :extra_types, except: [:new, :show]
+  resources :providers, except: [:new, :show]
+  resources :packages, except: [:new, :show]
+  resources :beer_characteristics, except: [:new, :show]
+  resources :beers
+  resources :glasses, except: [:show]
+
+  resources :clients do
+    resources :addresses
+  end
+
   resources :sessions, only: [:create, :destroy]
   resources :login, only: [:index]
 
