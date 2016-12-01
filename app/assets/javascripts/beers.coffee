@@ -4,7 +4,7 @@
 $ ->
 
   #$(".date").mask("99-99-9999",{placeholder:"dd-mm-yyyy"})
-  $(".date").inputmask("99/99/9999",{ "placeholder": "dd-mm-aaaa"});
+  $(".date").inputmask("9999/99/99",{ "placeholder": "aaaa-mm-dd"});
   $(".money").inputmask("99.999999",{ "placeholder": ""});
 
 

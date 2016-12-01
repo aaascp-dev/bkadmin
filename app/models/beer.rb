@@ -9,6 +9,7 @@ class Beer < ApplicationRecord
   validates :is_imported, inclusion: { in: [true,false], message: "Valor deve ser true ou false." }
   validates :is_better_quality, inclusion: { in: [true,false], message: "Valor deve ser true ou false." }
   validates :volume, numericality: { only_integer: true, message: "Volume deve ser um número inteiro." }
+  validate  :valid_date
 
   belongs_to :provider
   belongs_to :package
@@ -26,4 +27,9 @@ class Beer < ApplicationRecord
       all()
     end
   end
+
+  private
+    def valid_date
+      errors.add(:expiration_date, "Data de validade inválida.") if expiration_date.nil?
+    end
 end
