@@ -29,3 +29,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Added by Andre
 gem 'materialize-sass'
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'jquery-inputmask-rails'
